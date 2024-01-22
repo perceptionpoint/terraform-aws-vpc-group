@@ -20,7 +20,7 @@ resource "local_file" "external_vpc_peerings_tf" {
 }
 
 resource "local_file" "main_external_vpc_peerings_tf" {
-  content  = "module \"external_vpc_peerings\" { source = \"./generated_external_vpc_peerings\" }"
+  content  = "module \"external_vpc_peerings\" { source = \"./generated_external_vpc_peerings\" }\n"
   filename = "${path.root}/main_external_vpc_peerings.tf"
 
   count = local.should_generate_external_vpc_peerings > 0 ? 1 : 0
