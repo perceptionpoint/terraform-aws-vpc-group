@@ -27,7 +27,13 @@ module "vpc_peering_${vpc_key}_${external_vpc_peering_key}" {
     external_accepter = ${external_vpc_peering_value["external_accepter"]}
     aws_region = "${external_vpc_peering_value["aws_region"]}"
     vpc_id = "${external_vpc_peering_value["vpc_id"]}"
-    rtbl_id = "${external_vpc_peering_value["rtbl_id"]}"
+    %{~ if length(external_vpc_peering_value["rtbl_ids"]) > 0 ~}
+    rtbl_ids = [
+      %{~ for rtbl_id in external_vpc_peering_value["rtbl_ids"] ~}
+      "${rtbl_id}",
+      %{~ endfor ~}
+    ]
+    %{~ endif ~}
     account_id = "${external_vpc_peering_value["account_id"]}"
     cidr_block = "${external_vpc_peering_value["cidr_block"]}"
   }
