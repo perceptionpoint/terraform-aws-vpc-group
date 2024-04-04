@@ -33,7 +33,6 @@ module "routes" {
   subnet_groups = { for k, sg in module.subnet-group : k => sg.subnet_group }
   nat_gateways = var.vpc_properties["nat_gateways"]
   vpn_connections = var.vpc_properties["vpn_connections"]
-  external_vpc_peerings = var.vpc_properties["external_vpc_peerings"]
   public_igw_subnet_groups = var.vpc_properties["public_igw_subnet_groups"]
   nacl_subnet_groups = var.vpc_properties["nacl_subnet_groups"]
   vpc_endpoints = var.vpc_properties["vpc_endpoints"]

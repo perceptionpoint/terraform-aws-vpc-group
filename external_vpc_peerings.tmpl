@@ -34,6 +34,20 @@ module "vpc_peering_${vpc_key}_${external_vpc_peering_key}" {
       %{~ endfor ~}
     ]
     %{~ endif ~}
+    %{~ if length(external_vpc_peering_value["accepter_tags"]) > 0 ~}
+    accepter_tags = {
+      %{~ for tag_name, tag_val in external_vpc_peering_value["accepter_tags"] ~}
+      "${tag_name}" = "${tag_val}"
+      %{~ endfor ~}
+    }
+    %{~ endif ~}
+    %{~ if length(external_vpc_peering_value["requester_tags"]) > 0 ~}
+    requester_tags = {
+      %{~ for tag_name, tag_val in external_vpc_peering_value["requester_tags"] ~}
+      "${tag_name}" = "${tag_val}"
+      %{~ endfor ~}
+    }
+    %{~ endif ~}
     account_id = "${external_vpc_peering_value["account_id"]}"
     cidr_block = "${external_vpc_peering_value["cidr_block"]}"
   }

@@ -23,6 +23,8 @@ variable "vpc_group" { type = object({
                 cidr_block = string
                 assume_role = optional(string, "")
                 attach_subnet_groups = list(string)
+                accepter_tags = optional(map(string), {})
+                requester_tags = optional(map(string), {})
             }))
             vpn_connections = map(object({
                 cgw_ip = string

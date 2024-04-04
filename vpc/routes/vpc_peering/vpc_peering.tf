@@ -8,6 +8,7 @@ resource "aws_vpc_peering_connection" "primary2peer" {
   peer_vpc_id   = var.peer_vpc["vpc_id"]
   peer_region = var.peer_vpc["aws_region"]
   auto_accept   = false
+  tags = var.peer_vpc["requester_tags"]
 }
 
 # Accepter's side of the connection.
@@ -15,6 +16,7 @@ resource "aws_vpc_peering_connection_accepter" "peer-vpc" {
   provider = aws.peer_vpc
   vpc_peering_connection_id = aws_vpc_peering_connection.primary2peer.id
   auto_accept = true
+  tags = var.peer_vpc["accepter_tags"]
   count = (! (var.peer_vpc["external_accepter"]))? 1 : 0
 }
 

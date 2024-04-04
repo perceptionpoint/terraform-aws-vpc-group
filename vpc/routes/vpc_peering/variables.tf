@@ -8,4 +8,6 @@ variable "peer_vpc" { type = object({
                 rtbl_ids = optional(list(string), [])
                 account_id = string
                 cidr_block = string
+                accepter_tags = optional(map(string), {})
+                requester_tags = optional(map(string), {})
             })}
