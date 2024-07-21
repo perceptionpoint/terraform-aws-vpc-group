@@ -33,6 +33,7 @@ variable "vpc_group" { type = object({
             nat_gateways = map(object({
                 public_subnet_group = string
                 private_subnet_groups  = list(string)
+                extra_nat_tags = optional(map(string), {})
             }))
             route53_resolver_settings = optional(object({
                 attach_subnet_groups = list(string)

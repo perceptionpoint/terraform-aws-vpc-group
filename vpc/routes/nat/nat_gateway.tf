@@ -8,10 +8,7 @@ resource "aws_eip" "nat_gateway" {
 resource "aws_nat_gateway" "nat_gateway" {
   allocation_id = aws_eip.nat_gateway.id
   subnet_id     = var.public_subnet_ids[0] # TODO: consider attaching each subnet to its own NAT gateway
-  tags = {
-    product = "mantis"
-    sub-product = "nat-gateway"
-  }
+  tags          = merge(tomap({"sub-product" = "nat-gateway"}), var.extra_nat_tags)
 }
 
 resource "aws_route" "private-subnet-to-nat" {
