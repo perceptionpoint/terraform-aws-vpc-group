@@ -4,6 +4,7 @@ module "nat" {
 
   public_subnet_ids = var.subnet_groups[each.value["public_subnet_group"]].subnet_ids
   private_subnet_rtbl_ids = [for s in each.value["private_subnet_groups"] : var.subnet_groups[s].route_table_id]
+  extra_nat_tags = each.value["extra_nat_tags"]
 }
 
 resource "aws_vpn_gateway" "vpn-gw" {
