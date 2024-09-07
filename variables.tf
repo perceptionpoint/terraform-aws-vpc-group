@@ -26,10 +26,10 @@ variable "vpc_group" { type = object({
                 accepter_tags = optional(map(string), {})
                 requester_tags = optional(map(string), {})
             }))
-            vpn_connections = map(object({
+            vpn_connections = optional(map(object({
                 cgw_ip = string
                 attach_subnet_groups  = list(string)
-            }))
+            })), {})
             nat_gateways = map(object({
                 public_subnet_group = string
                 private_subnet_groups  = list(string)
