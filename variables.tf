@@ -10,6 +10,7 @@ variable "vpc_group" { type = object({
                 offset = number
                 assign_public_ips = bool
                 extra_subnet_tags = optional(map(string), {})
+                ignore_routes_changes = optional(bool, false)
             }))
             public_igw_subnet_groups = list(string)
             nacl_subnet_groups = optional(list(string), [])
