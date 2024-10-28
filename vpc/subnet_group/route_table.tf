@@ -20,7 +20,7 @@ resource "aws_route_table" "route_table_ignore_routes" {
 
 resource "aws_route_table_association" "route_table_assoc" {
   subnet_id      = element(aws_subnet.subnet.*.id, count.index)
-  route_table_id = length(aws_route_table.route_table) > 0 ? aws_route_table.route_table[0].id : aws_route_table.route_table_ignore_routes[0].id
+  route_table_id = var.subnet_group_properties["ignore_routes_changes"] ? aws_route_table.route_table_ignore_routes[0].id : aws_route_table.route_table[0].id
 
   count = length(var.subnet_group_properties["availability_zones"])
 }
