@@ -14,7 +14,7 @@ variable "vpc_group" { type = object({
             }))
             public_igw_subnet_groups = list(string)
             nacl_subnet_groups = optional(list(string), [])
-            vpc_endpoints = map(object({
+            vpc_endpoints = optional(map(object({
                 subnet_groups = list(string)  # only first element is applicable for vpc_endpoint_type="Interface"
                 vpc_endpoint_type = optional(string, "Gateway")
                 ### applicable only for vpc_endpoint_type="Interface"
@@ -23,7 +23,7 @@ variable "vpc_group" { type = object({
                     protocol = optional(string, "tcp")
                 })), [{port=443, protocol="tcp"}])
                 ###
-            }))
+            })), {})
             external_vpc_peerings = map(object({
                 external_accepter = bool
                 aws_region = string
