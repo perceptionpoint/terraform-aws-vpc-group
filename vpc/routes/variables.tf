@@ -5,6 +5,6 @@ variable "subnet_groups" {}
 variable "nat_gateways" {}
 variable "vpn_connections" {}
 variable "public_igw_subnet_groups" {}
-variable "nacl_subnet_groups" {}
+variable "default_nacl_inbound_rules" {}
 variable "vpc_endpoints" {}
 variable "route53_resolver_settings" {}
