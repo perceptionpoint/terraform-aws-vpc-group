@@ -34,6 +34,7 @@ variable "vpc_group" { type = object({
             external_vpc_peerings = map(object({
                 external_accepter = bool
                 aws_region = string
+                aws_profile = optional(string, "")
                 vpc_id = string
                 rtbl_ids = optional(list(string), [])
                 account_id = string
