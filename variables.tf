@@ -59,4 +59,5 @@ variable "vpc_group" { type = object({
                 enable_inbound_resolver = bool
             }), null)
         }))
+        internal_vpc_peerings = optional(map(string), {})
 })}
