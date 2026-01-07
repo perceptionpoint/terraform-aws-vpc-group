@@ -14,9 +14,11 @@ terraform {
     %{~ for external_vpc_peering_key, external_vpc_peering_value in vpc_value["external_vpc_peerings"] ~}
         %{~ if lookup(external_vpc_peering_value, "external_accepter") == false ~}
 provider "aws" {
+  %{~ if length(lookup(external_vpc_peering_value, "assume_role", "")) > 0 ~}
   assume_role {
-    role_arn = "${lookup(external_vpc_peering_value, "assume_role", null)}"
+    role_arn = "${lookup(external_vpc_peering_value, "assume_role", "")}"
   }
+  %{~ endif ~}
   region  = "${external_vpc_peering_value["aws_region"]}"
   profile = "${lookup(external_vpc_peering_value, "aws_profile", null)}"
   alias = "external_vpc_peering_${vpc_key}_${external_vpc_peering_key}"
