@@ -5,7 +5,7 @@ resource "aws_vpc_endpoint" "vpc_endpoint" {
   depends_on = [aws_security_group.vpc_endpoint_sg]
 
   vpc_id       = var.vpc_id
-  service_name = "com.amazonaws.${data.aws_region.current.name}.${each.key}"
+  service_name = "com.amazonaws.${data.aws_region.current.region}.${each.key}"
   vpc_endpoint_type = each.value.vpc_endpoint_type
 
   route_table_ids  = each.value.vpc_endpoint_type == "Gateway" ? [for s in each.value.subnet_groups : var.subnet_groups[s].route_table_id] : null

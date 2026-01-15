@@ -6,7 +6,7 @@ locals {
 data "aws_region" "current" {}
 
 resource "local_file" "providers_tf" {
-  content  = templatefile("${path.module}/providers.tmpl", { var_vpc_group = var.vpc_group, current_aws_region = data.aws_region.current.name })
+  content  = templatefile("${path.module}/providers.tmpl", { var_vpc_group = var.vpc_group, current_aws_region = data.aws_region.current.region })
   filename = "${path.root}/generated_external_vpc_peerings/providers.tf"
 
   count = local.should_generate_external_vpc_peerings > 0 ? 1 : 0
