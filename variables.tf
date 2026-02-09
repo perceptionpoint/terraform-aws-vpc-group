@@ -59,5 +59,14 @@ variable "vpc_group" { type = object({
                 enable_inbound_resolver = bool
             }), null)
         }))
-        internal_vpc_peerings = optional(map(string), {})
+        internal_vpc_peerings = optional(map(object({
+            requester = object({
+                vpc_name = string
+                subnet_group_names = list(string)
+            })
+            accepter = object({
+                vpc_name = string
+                subnet_group_names = list(string)
+            })
+        })), {})
 })}
