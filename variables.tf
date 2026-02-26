@@ -13,14 +13,7 @@ variable "vpc_group" { type = object({
                 ignore_routes_changes = optional(bool, false)
             }))
             public_igw_subnet_groups = list(string)
-            default_nacl_inbound_rules = map(object({
-                action = string
-                cidr_block = string
-                from_port = number
-                protocol = optional(string, "tcp")
-                to_port = number
-                rule_no = number
-            }))
+            nacl_connect_allowed_cidrs = optional(map(string), {})
             vpc_endpoints = optional(map(object({
                 subnet_groups = list(string)  # only first element is applicable for vpc_endpoint_type="Interface"
                 vpc_endpoint_type = optional(string, "Gateway")

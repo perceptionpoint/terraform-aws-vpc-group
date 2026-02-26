@@ -34,7 +34,7 @@ module "routes" {
   nat_gateways = var.vpc_properties["nat_gateways"]
   vpn_connections = var.vpc_properties["vpn_connections"]
   public_igw_subnet_groups = var.vpc_properties["public_igw_subnet_groups"]
-  default_nacl_inbound_rules = var.vpc_properties["default_nacl_inbound_rules"]
+  nacl_connect_allowed_cidrs = var.vpc_properties["nacl_connect_allowed_cidrs"]
   vpc_endpoints = var.vpc_properties["vpc_endpoints"]
   route53_resolver_settings = var.vpc_properties["route53_resolver_settings"]
 }
